@@ -1,12 +1,54 @@
 package com.bridglabz;
 
-public class HotelReservationMain {
-    public void addHotel(){
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
 
+public class HotelReservationMain {
+    LocalDate checkIn= LocalDate.of(2020, 9, 10);
+    LocalDate checkOut= LocalDate.of(2020, 9, 11);
+    DayOfWeek ci=checkIn.getDayOfWeek();
+
+    DayOfWeek co=checkOut.getDayOfWeek();
+
+    ArrayList <Hotel> hotelList=new ArrayList<>();
+
+    public void addHotel(Hotel hotel){
+
+        hotelList.add(hotel);
     }
     public static void main(String[] args) {
-        Hotel h1=new Hotel("Lakewood","Regular",110);
-        Hotel h2=new Hotel("BridgeWood","Regular",160);
-        Hotel h3=new Hotel("RidgeWood","regular",220);
+        HotelReservationMain h=new HotelReservationMain();
+        Hotel lakeWood=new Hotel("Lakewood",110,90,80,80);
+        Hotel bridgeWood=new Hotel("BridgeWood",160,60,110,50);
+        Hotel ridgeWood=new Hotel("RidgeWood",220,150,100,40);
+
+        h.addHotel(lakeWood);
+        h.addHotel(bridgeWood);
+        h.addHotel(ridgeWood);
+        h.calculateRateForRegularCustomer();
+
+    }
+    public void calculateRateForRegularCustomer(){
+        int sumLakewood=hotelList.get(0).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(0).calculateRateForCustomer(String.valueOf(co));
+        System.out.println(sumLakewood);
+        int sumBridgeWood=hotelList.get(1).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(1).calculateRateForCustomer(String.valueOf(co));
+        System.out.println(sumBridgeWood);
+        int sumRidgeWood=hotelList.get(2).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(2).calculateRateForCustomer(String.valueOf(co));
+        System.out.println(sumRidgeWood);
+
+        if(sumLakewood<=sumBridgeWood && sumBridgeWood<=sumRidgeWood){
+            System.out.println("*******************************************************************");
+            System.out.println("Cheapest Hotel is LakeWood: "+"$"+sumLakewood);
+            System.out.println("*******************************************************************");
+
+        } else if (sumBridgeWood<=sumLakewood&&sumBridgeWood<=sumRidgeWood) {
+            System.out.println("Cheapest Hotel is BridgeWood: "+"$"+sumBridgeWood);
+        }
+        else {
+            System.out.println("Cheapest Hotel is RidgeWood: "+"$"+sumRidgeWood);
+        }
     }
 }
