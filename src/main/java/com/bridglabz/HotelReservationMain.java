@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class HotelReservationMain {
-    LocalDate checkIn= LocalDate.of(2020, 9, 10);
-    LocalDate checkOut= LocalDate.of(2020, 9, 11);
+    LocalDate checkIn= LocalDate.of(2020, 9, 11);
+    LocalDate checkOut= LocalDate.of(2020, 9, 12);
     DayOfWeek ci=checkIn.getDayOfWeek();
 
     DayOfWeek co=checkOut.getDayOfWeek();
@@ -40,9 +40,12 @@ public class HotelReservationMain {
         System.out.println(sumRidgeWood);
 
         if(sumLakewood<=sumBridgeWood && sumBridgeWood<=sumRidgeWood){
-            System.out.println("*******************************************************************");
-            System.out.println("Cheapest Hotel is LakeWood: "+"$"+sumLakewood);
-            System.out.println("*******************************************************************");
+            if(sumBridgeWood==sumLakewood) {
+                System.out.println("*******************************************************************");
+                System.out.println("Cheapest Hotel is LakeWood: " + "$" + sumLakewood);
+                System.out.println("Cheapest Hotel is BridgeWood: "+"$"+sumBridgeWood);
+                System.out.println("*******************************************************************");
+            }
 
         } else if (sumBridgeWood<=sumLakewood&&sumBridgeWood<=sumRidgeWood) {
             System.out.println("Cheapest Hotel is BridgeWood: "+"$"+sumBridgeWood);
