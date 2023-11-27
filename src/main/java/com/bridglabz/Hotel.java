@@ -30,6 +30,9 @@ public class Hotel {
         else {
             return weekendRate;
         }
-
 }
+
+   public int calculateRating(int r) {
+        return rating;
+    }
 }
