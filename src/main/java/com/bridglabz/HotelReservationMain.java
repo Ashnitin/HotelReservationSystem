@@ -28,10 +28,10 @@ public class HotelReservationMain {
         h.addHotel(lakeWood);
         h.addHotel(bridgeWood);
         h.addHotel(ridgeWood);
-        h.calculateRateForRegularCustomer();
-
+        //h.calculateRateForRegularCustomer();
+        h.bestRatedHotel();
     }
-    public void calculateRateForRegularCustomer(){
+    /*public void calculateRateForRegularCustomer(){
         int sumLakewood=hotelList.get(0).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(0).calculateRateForCustomer(String.valueOf(co));
         System.out.println("LakWood: "+"$"+sumLakewood);
         int sumBridgeWood=hotelList.get(1).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(1).calculateRateForCustomer(String.valueOf(co));
@@ -47,8 +47,8 @@ public class HotelReservationMain {
 
                     System.out.println("*******************************************************************");
                     if (lakeWoodRating<bridgeWoodRating) {
-                        /*System.out.println("Cheapest best Hotel is LakeWood: " + "$" + sumLakewood);
-                        System.out.println("Cheapest Hotel is BridgeWood: " + "$" + sumBridgeWood);*/
+                        *//*System.out.println("Cheapest best Hotel is LakeWood: " + "$" + sumLakewood);
+                        System.out.println("Cheapest Hotel is BridgeWood: " + "$" + sumBridgeWood);*//*
                         System.out.println("Cheapest Best Rated Hotel is BridgeWood: "+"$"+sumBridgeWood+"\nRating is: "+bridgeWoodRating);
                         System.out.println("*******************************************************************");
                     }
@@ -59,6 +59,24 @@ public class HotelReservationMain {
         else {
             System.out.println("Cheapest Hotel is RidgeWood: "+"$"+sumRidgeWood);
         }
-    }
+    }*/
+    public void bestRatedHotel(){
+        int lakeWoodRating=hotelList.get(0).calculateRating(3);
+        int bridgeWoodRating=hotelList.get(1).calculateRating(4);
+        int ridgeWoodRating=hotelList.get(2).calculateRating(5);
 
+        if(lakeWoodRating>=bridgeWoodRating && lakeWoodRating>=ridgeWoodRating){
+            System.out.println("*******************************************************************");
+            System.out.println("Best Rated Hotel is LakeWood: "+lakeWoodRating);
+            System.out.println("*******************************************************************");
+        } else if (bridgeWoodRating>=lakeWoodRating &&bridgeWoodRating>=ridgeWoodRating) {
+            System.out.println("*******************************************************************");
+            System.out.println("Best Rated Hotel is BridgeWood: "+bridgeWoodRating);
+            System.out.println("*******************************************************************");
+        }else{
+            System.out.println("*******************************************************************");
+            System.out.println("Best Rated Hotel is RidgeWood: "+ridgeWoodRating);
+            System.out.println("*******************************************************************");
+        }
+    }
 }
