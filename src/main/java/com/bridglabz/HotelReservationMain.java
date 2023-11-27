@@ -22,7 +22,7 @@ public class HotelReservationMain {
     public static void main(String[] args) {
         HotelReservationMain h=new HotelReservationMain();
         Hotel lakeWood=new Hotel("Lakewood",110,90,80,80);
-        Hotel bridgeWood=new Hotel("BridgeWood",160,60,110,50);
+        Hotel bridgeWood=new Hotel("BridgeWood",150,50,110,50);
         Hotel ridgeWood=new Hotel("RidgeWood",220,150,100,40);
 
         h.addHotel(lakeWood);
