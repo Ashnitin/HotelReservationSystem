@@ -31,7 +31,14 @@ public class Hotel {
             return weekendRate;
         }
 }
-
+public int calculateRateRewardCustomer(String day1){
+    if(day1.equals("MONDAY")||day1.equals("TUESDAY")||day1.equals("WEDNESDAY")||day1.equals("THURSDAY")||day1.equals("FRIDAY")){
+        return weekRateForRewardCustomer;
+    }
+    else {
+        return weekendRateForRewardCustomer;
+    }
+}
    public int calculateRating(int r) {
         return rating;
     }
