@@ -29,10 +29,11 @@ public class HotelReservationMain {
         h.addHotel(ridgeWood);
         h.calculateRateForRegularCustomer();
         h.bestRatedHotel();
-        h.cheapestHotelRewardCustomer();
+       h.cheapestHotelRewardCustomer();
         h.bestRatedHotelRewardCustomerStreams();
+        h.bestRatedHotelRegularCustomerStreams();
     }
-    public void calculateRateForRegularCustomer(){
+    public int calculateRateForRegularCustomer(){
         int sumLakewood=hotelList.get(0).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(0).calculateRateForCustomer(String.valueOf(co));
         System.out.println("LakWood: "+"$"+sumLakewood);
         int sumBridgeWood=hotelList.get(1).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(1).calculateRateForCustomer(String.valueOf(co));
@@ -50,16 +51,20 @@ public class HotelReservationMain {
                     if (lakeWoodRating<bridgeWoodRating) {
                         System.out.println("Cheapest best Hotel is LakeWood: " + "$" + sumLakewood);
                         System.out.println("Cheapest Hotel is BridgeWood: " + "$" + sumBridgeWood);
-                        System.out.println("Cheapest Best Rated Hotel is BridgeWood: "+"$"+sumBridgeWood+"\nRating is: "+lakeWoodRating);
+                        System.out.println("Cheapest Best Rated Hotel is BridgeWood using Stream: "+"$"+sumBridgeWood+"\nRating is: "+lakeWoodRating);
                         System.out.println("*******************************************************************");
+                        return sumLakewood;
                     }
             }
         } else if (sumBridgeWood<=sumLakewood&&sumBridgeWood<=sumRidgeWood) {
-            System.out.println("Cheapest Hotel is BridgeWood: "+"$"+bridgeWoodRating);
+            System.out.println("Cheapest Hotel is BridgeWood using Stream: "+"$"+bridgeWoodRating);
+            return sumBridgeWood;
         }
         else {
-            System.out.println("Cheapest Hotel is RidgeWood: "+"$"+sumRidgeWood);
+            System.out.println("Cheapest Hotel is RidgeWood using Stream: "+"$"+sumRidgeWood);
+            return sumRidgeWood;
         }
+        return 0;
     }
     public  int  bestRatedHotel(){
         int sumLakewood=hotelList.get(0).calculateRateForCustomer(String.valueOf(ci))+hotelList.get(0).calculateRateForCustomer(String.valueOf(co));
@@ -135,8 +140,13 @@ public class HotelReservationMain {
         return 0;
     }
     public Stream<Object> bestRatedHotelRewardCustomerStreams(){
-        return hotelList.stream().map(x->{cheapestHotelRewardCustomer();bestRatedHotelRewardCustomerStreams();
-            return null;
+        return hotelList.stream().map(x->{cheapestHotelRewardCustomer();
+            return x;
+        });
+    }
+    public Stream<Object> bestRatedHotelRegularCustomerStreams(){
+        return hotelList.stream().map(x->{calculateRateForRegularCustomer();bestRatedHotelRegularCustomerStreams();
+            return x;
         });
     }
 }
